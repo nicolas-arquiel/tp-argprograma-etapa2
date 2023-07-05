@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap" rel="styleshee   ">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" rel="stylesheet">
+    <script defer src="script.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <nav class="custom-nav">
+        <h1>Pagina de administracion de socios</h1>
+        <button class="add-button">Agregar</button>
+    </nav>
+    <!-- Formulario de registro de socios -->
+    <form class="hidden custom-form">
+        <div>
+            <label>Nombre del socio</label>
+            <input type="text">
+        </div>
+        <div>
+            <label>Email</label>
+            <input type="email">
+        </div>
+        <div>
+            <label>Categoria</label>
+            <select>
+                <option>Cadete</option>
+                <option>Socio pleno</option>
+                <option>Adherente</option>
+            </select>
+        </div>
+        <div>
+            <input type="submit">
+        </div>
+    </form>
+    <div class="table-container">
+        <!-- Tabla de socios activos -->
+        <table class="centered custom-table">
+            <caption>Socios</caption>
+            <th>Nombre</th>
+            <th>Email</th>
+            <th>Cuota</th>
+            <th>Acreditada</th>
+            <th>Categoria</th>
+            <th>Accion</th>
+            <tr>
+                <td>
+                    Nicolas Arquiel
+                </td>
+                <td>
+                    arquiel.nicoolas@gmail.com
+                </td>
+                <td>
+                    $7000
+                </td>
+                <td>
+                    No
+                </td>
+                <td>
+                    Socio
+                </td>
+                <td>
+                    <i class="bi bi-pencil-fill"></i>
+                    <i class="bi bi-trash-fill"></i>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Nicolas Arquiel
+                </td>
+                <td>
+                    arquiel.nicoolas@gmail.com
+                </td>
+                <td>
+                    $7000
+                </td>
+                <td>
+                    No
+                </td>
+                <td>
+                    Socio
+                </td>
+                <td>
+                    <i class="bi bi-pencil-fill"></i>
+                    <i class="bi bi-trash-fill"></i>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Nicolas Arquiel
+                </td>
+                <td>
+                    arquiel.nicoolas@gmail.com
+                </td>
+                <td>
+                    $7000
+                </td>
+                <td>
+                    No
+                </td>
+                <td>
+                    Socio
+                </td>
+                <td>
+                    <i class="bi bi-pencil-fill"></i>
+                    <i class="bi bi-trash-fill"></i>
+                </td>
+            </tr>
+        </table>
+
+        <!-- Tabla de acceso segun el socio -->
+        <table class="centered custom-table">
+            <caption>Acceso del socio</caption>
+            <th>Instalacion</th>
+            <th>Permisos</th>
+            <tr>
+                <td>
+                    Gimnasio
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Piletas
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Predio
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Salon
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Deportes
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+
+</html>
