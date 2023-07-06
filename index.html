@@ -19,30 +19,32 @@
         <button class="add-button">Agregar</button>
     </nav>
     <!-- Formulario de registro de socios -->
-    <form class="hidden custom-form">
-        <div>
-            <label>Nombre del socio</label>
-            <input type="text">
-        </div>
-        <div>
-            <label>Email</label>
-            <input type="email">
-        </div>
-        <div>
-            <label>Categoria</label>
-            <select>
-                <option>Cadete</option>
-                <option>Socio pleno</option>
-                <option>Adherente</option>
-            </select>
-        </div>
-        <div>
-            <input type="submit">
-        </div>
-    </form>
+    <div class="hidden form-div">
+        <form class="custom-form centered">
+            <div>
+                <label>Nombre del socio</label>
+                <input type="text">
+            </div>
+            <div>
+                <label>Email</label>
+                <input type="email">
+            </div>
+            <div>
+                <label>Categoria</label>
+                <select>
+                    <option>Cadete</option>
+                    <option>Socio pleno</option>
+                    <option>Adherente</option>
+                </select>
+            </div>
+            <div>
+                <input type="submit">
+            </div>
+        </form>
+    </div>
     <div class="table-container">
         <!-- Tabla de socios activos -->
-        <table class="centered custom-table">
+        <table class="centered custom-table partner-table">
             <caption>Socios</caption>
             <th>Nombre</th>
             <th>Email</th>
@@ -50,73 +52,10 @@
             <th>Acreditada</th>
             <th>Categoria</th>
             <th>Accion</th>
-            <tr>
-                <td>
-                    Nicolas Arquiel
-                </td>
-                <td>
-                    arquiel.nicoolas@gmail.com
-                </td>
-                <td>
-                    $7000
-                </td>
-                <td>
-                    No
-                </td>
-                <td>
-                    Socio
-                </td>
-                <td>
-                    <i class="bi bi-pencil-fill"></i>
-                    <i class="bi bi-trash-fill"></i>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    Nicolas Arquiel
-                </td>
-                <td>
-                    arquiel.nicoolas@gmail.com
-                </td>
-                <td>
-                    $7000
-                </td>
-                <td>
-                    No
-                </td>
-                <td>
-                    Socio
-                </td>
-                <td>
-                    <i class="bi bi-pencil-fill"></i>
-                    <i class="bi bi-trash-fill"></i>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    Nicolas Arquiel
-                </td>
-                <td>
-                    arquiel.nicoolas@gmail.com
-                </td>
-                <td>
-                    $7000
-                </td>
-                <td>
-                    No
-                </td>
-                <td>
-                    Socio
-                </td>
-                <td>
-                    <i class="bi bi-pencil-fill"></i>
-                    <i class="bi bi-trash-fill"></i>
-                </td>
-            </tr>
         </table>
 
         <!-- Tabla de acceso segun el socio -->
-        <table class="centered custom-table">
+        <table class="centered custom-table access-table">
             <caption>Acceso del socio</caption>
             <th>Instalacion</th>
             <th>Permisos</th>
@@ -124,25 +63,40 @@
                 <td>
                     Gimnasio
                 </td>
+                <td>
+                    ✔
+                </td>
             </tr>
             <tr>
                 <td>
                     Piletas
+                </td>
+                <td>
+                    ✖
                 </td>
             </tr>
             <tr>
                 <td>
                     Predio
                 </td>
+                <td>
+                    ✔
+                </td>
             </tr>
             <tr>
                 <td>
                     Salon
                 </td>
+                <td>
+                    ✖
+                </td>
             </tr>
             <tr>
                 <td>
                     Deportes
+                </td>
+                <td>
+                    ✖
                 </td>
             </tr>
         </table>
