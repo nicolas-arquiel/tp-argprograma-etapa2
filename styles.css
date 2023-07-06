@@ -11,7 +11,7 @@ h1 {
 }
 
 .hidden {
-    display: none;
+    display: none !important;
 }
 
 .add-button{
@@ -64,12 +64,18 @@ h1 {
 .custom-table th,
 .custom-table td {
     border: 1px solid #ddd;
-    /* Bordado de 1px y color gris claro */
     padding: 8px;
-    /* Espaciado interno de las celdas */
 }
 
 .custom-table th {
     background-color: #f2f2f2;
-    /* Color de fondo tenue para los encabezados */
+}
+
+.custom-table td button {
+    display: inline;
+    margin-right: 5px;
+  }
+
+.access-table{
+    display: block;
 }
