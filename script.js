@@ -4,8 +4,9 @@ const partnerTable = document.querySelector('.partner-table')
 const accessTable = document.querySelectorAll('.access-table')
 const editButtons = document.querySelectorAll('.edit-button')
 const saveButtons = document.querySelectorAll('.save-button')
+const closeButton= document.querySelector('.close-button')
+const form = document.querySelector('.custom-form')
 
-console.log(accessTable)
 class Member {
     constructor(name, email, subscription, accredited, category) {
         this.name = name
@@ -18,15 +19,36 @@ class Member {
 
 const member1 = new Member('Nicolas Arquiel', 'arquiel.nicoolas@gmail.com', 7000, 'No', 'Socio')
 const member2 = new Member('Saco Wea', 'saco.nicoolas@gmail.com', 7000, 'No', 'Adherente')
-const member3 = new Member('Saco Wea', 'saco.nicoolas@gmail.com', 7000, 'No', 'Cadete')
+const member3 = new Member('Saco Weaita', 'saco@gmail.com', 7000, 'No', 'Cadete')
 
-const partners = [member1, member2, member3]
+let partners = [member1, member2, member3]
+
+loadMembersFromLocalStorage()
 
 
-partners.forEach((partner, index) => {
-    const row = partnerTable.insertRow() // Agrega una nueva fila a la tabla
+function loadMembersFromLocalStorage() {
+    const storedMembers = localStorage.getItem('members')
+    if (storedMembers) {
+        partners = JSON.parse(storedMembers)
+    } else if (partners.length === 0) {
+        partners = [member1, member2, member3]
+        saveMembersToLocalStorage()
+    }
+}
 
-    // Agrega las celdas a la fila
+
+function saveMembersToLocalStorage() {
+    if (partners.length > 0) {
+        localStorage.setItem('members', JSON.stringify(partners))
+    } else {
+        localStorage.removeItem('members')
+    }
+}
+
+
+function generateTableRow(partner, index) {
+    const row = partnerTable.insertRow()
+
     const nameCell = row.insertCell()
     nameCell.textContent = partner.name
 
@@ -34,7 +56,7 @@ partners.forEach((partner, index) => {
     emailCell.textContent = partner.email
 
     const subscriptionCell = row.insertCell()
-    subscriptionCell.textContent = `$${partner.subscription}`
+    subscriptionCell.textContent = `${partner.subscription}`
 
     const accreditedCell = row.insertCell()
     accreditedCell.textContent = partner.accredited
@@ -44,112 +66,106 @@ partners.forEach((partner, index) => {
 
     const actionCell = row.insertCell()
 
-    //Crea el boton de info
+    //Crear botones (info,edit,save,delete)
     const infoButton = document.createElement('button')
     infoButton.classList.add('info-button')
     infoButton.setAttribute('data-index', index)
     infoButton.innerHTML = `
         <i class="bi bi-info-circle"></i>
     `
-    //Crea el boton de editar
+    actionCell.appendChild(infoButton)
+
     const editButton = document.createElement('button')
     editButton.classList.add('edit-button')
     editButton.setAttribute('data-index', index)
     editButton.innerHTML = `
         <i class="bi bi-pencil-fill"></i>
     `
-    //Crea el boton de guardar edicion
+    actionCell.appendChild(editButton)
+
     const saveButton = document.createElement('button')
-    saveButton.classList.add('save-button','hidden')
+    saveButton.classList.add('save-button', 'hidden')
     saveButton.setAttribute('data-index', index)
     saveButton.innerHTML = `
         <i class="bi bi-check2"></i>
     `
-    //Crea el boton de borrar
+    actionCell.appendChild(saveButton)
+
     const deleteButton = document.createElement('button')
     deleteButton.classList.add('delete-button')
     deleteButton.setAttribute('data-index', index)
     deleteButton.innerHTML = `
         <i class="bi bi-trash-fill"></i>
     `
-
-    actionCell.appendChild(infoButton)
-    actionCell.appendChild(editButton)
-    actionCell.appendChild(saveButton)
     actionCell.appendChild(deleteButton)
 
-    //Evento click a boton de info
+    //Agregar eventos a los botones
     infoButton.addEventListener('click', (event) => {
         event.stopPropagation()
         const buttonIndex = event.currentTarget.getAttribute('data-index')
-
-        //Llamar a la funcion de actualizar tabla
-        updateAccessTable(partner.category)
-        const partnerInfo = partners[buttonIndex]
-        console.log('Información del socio:', partnerInfo)
+        updateAccessTable(partners[buttonIndex].category)
+        console.log('Información del socio:', partners[buttonIndex])
     })
 
-    //Evento click a boton de edit
     editButton.addEventListener('click', (event) => {
         event.stopPropagation()
         const buttonIndex = event.currentTarget.getAttribute('data-index')
         const partnerInfo = partners[buttonIndex]
-        const row = event.currentTarget.closest('tr') // Obtener la fila
+        const row = event.currentTarget.closest('tr')
+
+        // Guardar la referencia al miembro en una variable
+        let currentMember = partnerInfo
+
         saveButton.classList.toggle('hidden')
         editButton.classList.toggle('hidden')
         deleteButton.classList.toggle('hidden')
         infoButton.classList.toggle('hidden')
-        
+
         // Llamar a la función de edición de la fila
-        editRow(row, partnerInfo)
+        editRow(row, currentMember)
     })
 
-    //Evento click a boton de save
+    // Cargar los miembros desde el localStorage al inicio
+    loadMembersFromLocalStorage()
+
     saveButton.addEventListener('click', (event) => {
         event.stopPropagation()
         const buttonIndex = event.currentTarget.getAttribute('data-index')
         const partnerInfo = partners[buttonIndex]
-        const row = event.currentTarget.closest('tr') // Obtener la fila
+        const row = event.currentTarget.closest('tr')
         saveButton.classList.toggle('hidden')
         editButton.classList.toggle('hidden')
         deleteButton.classList.toggle('hidden')
         infoButton.classList.toggle('hidden')
-    
+
         // Guardar los datos de la fila
         saveRow(row, partnerInfo)
     })
 
-    //Evento click a boton de delete
     deleteButton.addEventListener('click', (event) => {
         event.stopPropagation()
         const buttonIndex = event.currentTarget.getAttribute('data-index')
         const partnerInfo = partners[buttonIndex]
-        const row = event.currentTarget.closest('tr') // Obtener la fila
-    
+        const row = event.currentTarget.closest('tr')
+
         // Llamar a la función de eliminación de la fila
         deleteRow(row, partnerInfo)
     })
+}
 
-})
-
-// CREAR BOTON PARA EDITAR, Y OTRO PARA VER LA INFO DE LOS PERMISOS DEL SOCIO
-// QUE NO SEA CLICKEAR LA ROW COMPLETA
-const updateAccessTable = (category) => {
+function updateAccessTable(category) {
     switch (category) {
         case 'Socio':
-            console.log('es Socio ')
             accessTable[0].classList.toggle('hidden')
             accessTable[1].classList.add('hidden')
             accessTable[2].classList.add('hidden')
             break
         case 'Adherente':
-            console.log('es Adherente')
             accessTable[1].classList.toggle('hidden')
             accessTable[0].classList.add('hidden')
             accessTable[2].classList.add('hidden')
             break
         case 'Cadete':
-            console.log('es Cadete')
             accessTable[2].classList.toggle('hidden')
             accessTable[0].classList.add('hidden')
             accessTable[1].classList.add('hidden')
@@ -157,19 +173,19 @@ const updateAccessTable = (category) => {
         default:
             break
     }
-
 }
 
-const editRow = (row, partnerInfo) => {
+function editRow(row, partnerInfo) {
     const cells = row.cells
 
-    // Recorrer las celdas y hacerlas editables
-    for (let i = 0; i < cells.length - 1; i++) { // Ignorar la última celda de acciones
+    for (let i = 0; i < cells.length - 1; i++) {
         const cell = cells[i]
-        const cellValue = cell.textContent
+        // Obtener el valor actualizado del miembro
+        const cellValue = partnerInfo[Object.keys(partnerInfo)[i]]
+
         let editableElement
 
-        if (i === 4) { // Categoría
+        if (i === 4) {
             const select = document.createElement('select')
             const categories = ['Socio', 'Adherente', 'Cadete']
             categories.forEach(category => {
@@ -180,7 +196,7 @@ const editRow = (row, partnerInfo) => {
             })
             select.value = cellValue
             editableElement = select
-        } else if (i === 3) { // Acreditada
+        } else if (i === 3) {
             const select = document.createElement('select')
             const options = ['Sí', 'No']
             options.forEach(option => {
@@ -191,10 +207,15 @@ const editRow = (row, partnerInfo) => {
             })
             select.value = cellValue === 'Sí' ? 'Sí' : 'No'
             editableElement = select
-        } else {
+        } else if (i === 2) {
             const input = document.createElement('input')
+            input.setAttribute('type', 'number')
             input.value = cellValue
             editableElement = input
+        } else  {
+            const input = document.createElement('input')
+            input.value = cellValue
+            editableElement = input 
         }
 
         cell.textContent = ''
@@ -202,49 +223,83 @@ const editRow = (row, partnerInfo) => {
     }
 }
 
-const saveRow = (row, partnerInfo) => {
+function saveRow(row, partnerInfo) {
     const inputs = row.querySelectorAll('input')
     const selects = row.querySelectorAll('select')
 
-    // Recorrer los inputs y selects y guardar los datos en las celdas
     inputs.forEach((input, i) => {
         const cell = row.cells[i]
         const inputValue = input.value
         cell.textContent = inputValue
         partnerInfo[Object.keys(partnerInfo)[i]] = inputValue
+        
     })
 
     selects.forEach((select, i) => {
-        const cell = row.cells[i + 3] // Los selects comienzan desde la celda 3 (Categoría)
+        const cell = row.cells[i + 3]
         const selectValue = select.value
         cell.textContent = selectValue
         partnerInfo[Object.keys(partnerInfo)[i + 3]] = selectValue
     })
+
+    // Actualizar el miembro en el array 'partners'
+    partners.splice(partners.indexOf(partnerInfo), 1, partnerInfo)
+    // Guardar los miembros actualizados en local
+    saveMembersToLocalStorage()
 }
 
-const deleteRow = (row, partnerInfo) => {
+
+function deleteRow(row, partnerInfo) {
     const confirmation = confirm('¿Estás seguro de que deseas eliminar este socio?')
     if (confirmation) {
         const buttonIndex = row.querySelector('.delete-button').getAttribute('data-index')
-        partners.splice(buttonIndex, 1) // Eliminar el socio del arreglo
-        
-        row.remove() // Eliminar la fila de la tabla
+        partners.splice(buttonIndex, 1)
+
+        row.remove()
 
         console.log('Socio eliminado:', partnerInfo)
+        saveMembersToLocalStorage()
     }
 }
 
-const saveData = (row, partnerInfo, input, cellIndex) => {
-    const newValue = input.value
-    partnerInfo[cellIndex] = newValue // Actualizar el valor en el objeto Member
-    row.cells[cellIndex].textContent = newValue // Actualizar el contenido de la celda
-    
-    // Restaurar el contenido original y eliminar el input
-    row.cells[cellIndex].textContent = newValue
-    input.remove()
-}
-
-
 addButton.addEventListener('click', () => {
     formDiv.classList.toggle('hidden')
+})
+
+closeButton.addEventListener('click', ()=>{
+    formDiv.classList.toggle('hidden')
+})
+
+
+form.addEventListener('submit', (event) => {
+    event.preventDefault()
+    const nameInput = form.querySelector('input[type="text"]')
+    const emailInput = form.querySelector('input[type="email"]')
+    const subscriptionInput = form.querySelector('input[type="number"]')
+    const categorySelect = form.querySelector('select')
+
+    const name = nameInput.value
+    const email = emailInput.value
+    const category = categorySelect.value
+    const subscription = subscriptionInput.value
+
+    // Validar campos vacíos
+    if (name.trim() === '' || email.trim() === '' || subscription.trim() === '' || category.trim() === '') {
+        alert('Por favor, complete todos los campos del formulario.')
+        return
+    }
+
+    const newMember = new Member(name, email, subscription, 'Si', category)
+
+    partners.push(newMember)
+    generateTableRow(newMember, partners.length - 1)
+
+    form.reset()
+    formDiv.classList.add('hidden')
+    saveMembersToLocalStorage()
+})
+
+
+partners.forEach((partner, index) => {
+    generateTableRow(partner, index)
 })

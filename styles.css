@@ -14,20 +14,35 @@ h1 {
     display: none !important;
 }
 
-.add-button{
+.add-button {
     z-index: 11000;
+    background-color: #F44336;
+    color: #FFFFFF;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.add-button:hover {
+    background-color: #E53935;
 }
 
 .select {
     border: 2px solid red;
 }
 
-
 .custom-nav {
     display: flex;
     justify-content: space-around;
-    background-color: red;
+    background-color: #3F51B5;
+    color: #FFFFFF;
     padding: 10px;
+}
+
+.custom-nav .add-button {
+    background-color: #F44336;
 }
 
 .centered {
@@ -37,25 +52,108 @@ h1 {
     justify-content: center;
 }
 
-.form-div{
+.form-div {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     border-radius: 12px;
-    background-color: red;
+    background-color: #5260e2;
+    padding: 20px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    z-index: 10000;
 }
 
-.table-container {
+.form-div label {
+    color: #FFFFFF;
+}
+
+.form-div h2 {
+    margin-bottom: 10px;
+    color: #FFFFFF;
+}
+
+.form-div form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.form-div form input[type="text"],
+.form-div form input[type="email"],
+.form-div form input[type="number"],
+.form-div form select {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.form-div form input[type="submit"] {
+    background-color: #F44336;
+    color: #FFFFFF;
+    border: none;
+    padding: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    color: #FFFFFF;
+    background-color: #F44336;
+    width: 30px;
+    height: 30px;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 20px;
-    gap: 20px;
+    border-radius: 50%;
+    cursor: pointer;
 }
 
+.close-button:hover {
+    background-color: #E53935;
+}
+
+
+.table-container {
+    padding: 10px;
+    border: 1px solid #ddd;
+    height: 80vh;
+    overflow-y: scroll;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    margin: 20px;
+    gap: 20px;
+    background-color: #F9F9F9;
+}
+
+.partner-table-div {
+    width: 80%;
+    height: 100%;
+    background-color: #FFFFFF;
+}
+
+.partner-table {
+    width: auto;
+    min-width: 700px;
+}
+
+.partner-table input[type="number"] {
+    width: 60px;
+}
+.access-table-div {
+    width: 20%;
+    background-color: #F9F9F9;
+}
 
 .custom-table-cell {
     border: 1px solid #ddd;
     padding: 8px;
-  }
-  
+}
 
 .custom-table {
     border-collapse: collapse;
@@ -68,14 +166,36 @@ h1 {
 }
 
 .custom-table th {
-    background-color: #f2f2f2;
+    background-color: #F2F2F2;
+    color: #555555;
 }
 
 .custom-table td button {
     display: inline;
     margin-right: 5px;
-  }
+}
 
-.access-table{
+.access-table {
     display: block;
+}
+
+.warning-message {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    z-index: 99999;
+}
+
+@media (min-width: 1050px) {
+    .warning-message {
+        display: none;
+    }
 }

@@ -14,6 +14,9 @@
 </head>
 
 <body>
+    <div class="warning-message">
+        La aplicación no está optimizada para esta resolución. Por favor, utiliza otro dispositivo.
+    </div>
     <nav class="custom-nav">
         <h1>Pagina de administracion de socios</h1>
         <button class="add-button">Agregar</button>
@@ -21,8 +24,10 @@
     <!-- Formulario de registro de socios -->
     <div class="hidden form-div">
         <form class="custom-form centered">
+            <span class="close-button">X</span>
+            <h2>Crear un nuevo socio</h2>
             <div>
-                <label>Nombre del socio</label>
+                <label>Nombre</label>
                 <input type="text">
             </div>
             <div>
@@ -30,11 +35,15 @@
                 <input type="email">
             </div>
             <div>
+                <label>Cuota</label>
+                <input type="number">
+            </div>
+            <div>
                 <label>Categoria</label>
                 <select>
-                    <option>Cadete</option>
-                    <option>Socio pleno</option>
+                    <option>Socio</option>
                     <option>Adherente</option>
+                    <option>Cadete</option>
                 </select>
             </div>
             <div>
@@ -44,108 +53,112 @@
     </div>
     <div class="table-container">
         <!-- Tabla de miembros activos -->
-        <table class="centered custom-table partner-table">
-            <caption>Miembros del club</caption>
-            <th>Nombre</th>
-            <th>Email</th>
-            <th>Cuota</th>
-            <th>Acreditada</th>
-            <th>Categoria</th>
-            <th>Accion</th>
-            <tr>
-                <td>Admin Admin</td>
-                <td>admin.admin@gmail.com</td>
-                <td>$9999</td>
-                <td>Si</td>
-                <td>Admin</td>
-                <td>
-                    <i class="bi bi-pencil-fill"></i>
-                    <i class="bi bi-trash-fill"></i>
-                </td>
-            </tr>
-        </table>
-
+        <div class="partner-table-div" >
+            <table class="centered custom-table partner-table">
+                <caption>Miembros del club</caption>
+                <th>Nombre</th>
+                <th>Email</th>
+                <th>Cuota $</th>
+                <th>Acreditada</th>
+                <th>Categoria</th>
+                <th>Accion</th>
+                <tr>
+                    <td>Admin Admin</td>
+                    <td>admin.admin@gmail.com</td>
+                    <td>9999</td>
+                    <td>Si</td>
+                    <td>Admin</td>
+                    <td>
+                        <i class="bi bi-info-circle"></i>
+                        <i class="bi bi-pencil-fill"></i>
+                        <i class="bi bi-trash-fill"></i>
+                    </td>
+                </tr>
+            </table>
+        </div>
         <!-- Tabla de acceso segun categoria -->
         <!-- Tabla de Socio -->
-        <table class="hidden centered custom-table access-table member">
-            <caption>Acceso del Socio</caption>
-            <th>Instalacion</th>
-            <th>Permisos</th>
-            <tr>
-                <td>Gimnasio</td>
-                <td>✔</td>
-            </tr>
-            <tr>
-                <td>Piletas</td>
-                <td>✔</td>
-            </tr>
-            <tr>
-                <td>Predio</td>
-                <td>✔</td>
-            </tr>
-            <tr>
-                <td>Salon</td>
-                <td>✔</td>
-            </tr>
-            <tr>
-                <td>Deportes</td>
-                <td>✔</td>
-            </tr>
-        </table>
+        <div class="access-table-div" >
+            <table class=" centered custom-table access-table member">
+                <caption>Acceso del Socio</caption>
+                <th>Instalacion</th>
+                <th>Permisos</th>
+                <tr>
+                    <td>Gimnasio</td>
+                    <td>✔</td>
+                </tr>
+                <tr>
+                    <td>Piletas</td>
+                    <td>✔</td>
+                </tr>
+                <tr>
+                    <td>Predio</td>
+                    <td>✔</td>
+                </tr>
+                <tr>
+                    <td>Salon</td>
+                    <td>✔</td>
+                </tr>
+                <tr>
+                    <td>Deportes</td>
+                    <td>✔</td>
+                </tr>
+            </table>
 
-        <!-- Tabla de Adherente -->
-        <table class="hidden centered custom-table access-table affiliate">
-            <caption>Acceso del Adherente</caption>
-            <th>Instalacion</th>
-            <th>Permisos</th>
-            <tr>
-                <td>Gimnasio</td>
-                <td>✔</td>
-            </tr>
-            <tr>
-                <td>Piletas</td>
-                <td>✔</td>
-            </tr>
-            <tr>
-                <td>Predio</td>
-                <td>✔</td>
-            </tr>
-            <tr>
-                <td>Salon</td>
-                <td>✖</td>
-            </tr>
-            <tr>
-                <td>Deportes</td>
-                <td>✖</td>
-            </tr>
-        </table>
+            <!-- Tabla de Adherente -->
+            <table class="hidden centered custom-table access-table affiliate">
+                <caption>Acceso del Adherente</caption>
+                <th>Instalacion</th>
+                <th>Permisos</th>
+                <tr>
+                    <td>Gimnasio</td>
+                    <td>✔</td>
+                </tr>
+                <tr>
+                    <td>Piletas</td>
+                    <td>✔</td>
+                </tr>
+                <tr>
+                    <td>Predio</td>
+                    <td>✔</td>
+                </tr>
+                <tr>
+                    <td>Salon</td>
+                    <td>✖</td>
+                </tr>
+                <tr>
+                    <td>Deportes</td>
+                    <td>✖</td>
+                </tr>
+            </table>
 
-        <!-- Tabla de Cadete -->
-        <table class="hidden centered custom-table access-table cadet">
-            <caption>Acceso del Cadete</caption>
-            <th>Instalacion</th>
-            <th>Permisos</th>
-            <tr>
-                <td>Gimnasio</td>
-                <td>✔</td>
-            </tr>
-            <tr>
-                <td>Piletas</td>
-                <td>✖</td>
-            </tr>
-            <tr>
-                <td>Predio</td>
-                <td>✔</td>
-            </tr>
-            <tr>
-                <td>Salon</td>
-                <td>✖</td>
-            </tr>
-            <tr>
-                <td>Deportes</td>
-                <td>✖</td>
-            </tr>
-        </table>
+            <!-- Tabla de Cadete -->
+            <table class="hidden centered custom-table access-table cadet">
+                <caption>Acceso del Cadete</caption>
+                <th>Instalacion</th>
+                <th>Permisos</th>
+                <tr>
+                    <td>Gimnasio</td>
+                    <td>✔</td>
+                </tr>
+                <tr>
+                    <td>Piletas</td>
+                    <td>✖</td>
+                </tr>
+                <tr>
+                    <td>Predio</td>
+                    <td>✔</td>
+                </tr>
+                <tr>
+                    <td>Salon</td>
+                    <td>✖</td>
+                </tr>
+                <tr>
+                    <td>Deportes</td>
+                    <td>✖</td>
+                </tr>
+            </table>
+        </div>
     </div>
 </body>
 
