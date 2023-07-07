@@ -1,9 +1,9 @@
-Realizar una aplicacion web para la administrracion de un club.
-Esta debera tener las siguientes funciones.
--Permitir la afiliacion de socios, modificar sus datos, darlos de baja
-y asignarles una categoria (Cadete, Socio, Adherente)
--Cargar el pago mensual de la cuota de cada socio
--Permitir el control de acceso a las instalaciones del club en base
-al cumplimiento del pago mensual (Autorizar acceso / Denegar acceso)
+Realizar una aplicación web para la administración de un club. 
+Esta deberá tener las siguientes funciones:
 
-Fecha de entrega, 2 semanas aprox
+-Permitir la afiliación de socios, modificar sus datos, 
+darlos de baja y asignarles una categoría (Cadete, Socio, Adherente).
+-Cargar el pago mensual de la cuota de cada socio.
+-Permitir el control de acceso a las instalaciones del club en base al 
+cumplimiento del pago mensual (Autorizar acceso / Denegar acceso).
+Fecha de entrega: 2 semanas aproximadamente.

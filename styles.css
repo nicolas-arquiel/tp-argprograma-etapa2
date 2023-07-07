@@ -117,6 +117,22 @@ h1 {
     background-color: #E53935;
 }
 
+.close-table-access-button {
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    font-size: 20px;
+    color: #FFFFFF;
+    background-color: #F44336;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 1;
+}
 
 .table-container {
     padding: 10px;
@@ -134,7 +150,6 @@ h1 {
 .partner-table-div {
     width: 80%;
     height: 100%;
-    background-color: #FFFFFF;
 }
 
 .partner-table {
@@ -145,9 +160,36 @@ h1 {
 .partner-table input[type="number"] {
     width: 60px;
 }
+
 .access-table-div {
-    width: 20%;
-    background-color: #F9F9F9;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 12px;
+    background-color: transparent;
+    padding: 20px;
+    z-index: 10000;
+}
+
+.access-table {
+    width: 280px;
+    border-radius: 12px;
+    margin: 15px;
+    padding: 20px;
+    background-color: #5260e2;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.access-table caption {
+    font-size: 20px;
+    color: #FFFFFF;
+}
+
+.access-table tr {
+    border: 1px solid black;
+    background-color: #F2F2F2;
+    text-align: center;
 }
 
 .custom-table-cell {
@@ -173,29 +215,4 @@ h1 {
 .custom-table td button {
     display: inline;
     margin-right: 5px;
-}
-
-.access-table {
-    display: block;
-}
-
-.warning-message {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.9);
-    color: #FFFFFF;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 24px;
-    z-index: 99999;
-}
-
-@media (min-width: 1050px) {
-    .warning-message {
-        display: none;
-    }
 }

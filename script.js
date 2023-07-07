@@ -4,7 +4,7 @@ const partnerTable = document.querySelector('.partner-table')
 const accessTable = document.querySelectorAll('.access-table')
 const editButtons = document.querySelectorAll('.edit-button')
 const saveButtons = document.querySelectorAll('.save-button')
-const closeButton= document.querySelector('.close-button')
+const closeButton = document.querySelector('.close-button')
 const form = document.querySelector('.custom-form')
 
 class Member {
@@ -17,25 +17,16 @@ class Member {
     }
 }
 
-const member1 = new Member('Nicolas Arquiel', 'arquiel.nicoolas@gmail.com', 7000, 'No', 'Socio')
-const member2 = new Member('Saco Wea', 'saco.nicoolas@gmail.com', 7000, 'No', 'Adherente')
-const member3 = new Member('Saco Weaita', 'saco@gmail.com', 7000, 'No', 'Cadete')
-
-let partners = [member1, member2, member3]
+let partners = []
 
 loadMembersFromLocalStorage()
-
 
 function loadMembersFromLocalStorage() {
     const storedMembers = localStorage.getItem('members')
     if (storedMembers) {
         partners = JSON.parse(storedMembers)
-    } else if (partners.length === 0) {
-        partners = [member1, member2, member3]
-        saveMembersToLocalStorage()
     }
 }
-
 
 function saveMembersToLocalStorage() {
     if (partners.length > 0) {
@@ -44,7 +35,6 @@ function saveMembersToLocalStorage() {
         localStorage.removeItem('members')
     }
 }
-
 
 function generateTableRow(partner, index) {
     const row = partnerTable.insertRow()
@@ -212,10 +202,10 @@ function editRow(row, partnerInfo) {
             input.setAttribute('type', 'number')
             input.value = cellValue
             editableElement = input
-        } else  {
+        } else {
             const input = document.createElement('input')
             input.value = cellValue
-            editableElement = input 
+            editableElement = input
         }
 
         cell.textContent = ''
@@ -232,7 +222,7 @@ function saveRow(row, partnerInfo) {
         const inputValue = input.value
         cell.textContent = inputValue
         partnerInfo[Object.keys(partnerInfo)[i]] = inputValue
-        
+
     })
 
     selects.forEach((select, i) => {
@@ -247,7 +237,6 @@ function saveRow(row, partnerInfo) {
     // Guardar los miembros actualizados en local
     saveMembersToLocalStorage()
 }
-
 
 function deleteRow(row, partnerInfo) {
     const confirmation = confirm('¿Estás seguro de que deseas eliminar este socio?')
@@ -266,10 +255,9 @@ addButton.addEventListener('click', () => {
     formDiv.classList.toggle('hidden')
 })
 
-closeButton.addEventListener('click', ()=>{
+closeButton.addEventListener('click', () => {
     formDiv.classList.toggle('hidden')
 })
-
 
 form.addEventListener('submit', (event) => {
     event.preventDefault()
@@ -299,7 +287,14 @@ form.addEventListener('submit', (event) => {
     saveMembersToLocalStorage()
 })
 
-
 partners.forEach((partner, index) => {
     generateTableRow(partner, index)
 })
+
+document.addEventListener('click', (event) => {
+    const isAccessTableClicked = event.target.closest('.access-table') !== null
+    if (!isAccessTableClicked) {
+        accessTable.forEach(table => table.classList.add('hidden'))
+    }
+})
+
